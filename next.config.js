@@ -8,6 +8,7 @@ const nextConfig = {
       "images.pexels.com",
       "assets.imgix.net",
       "i.ytimg.com",
+      "yt3.ggpht.com",
     ],
   },
 };
