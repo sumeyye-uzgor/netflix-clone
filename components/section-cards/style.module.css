@@ -1,0 +1,9 @@
+.wrapper {
+  display: flex;
+}
+.container {
+  margin: 5rem 0;
+}
+.title {
+  margin-bottom: 1rem;
+}
