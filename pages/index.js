@@ -3,14 +3,17 @@ import Banner from "../components/banner";
 import Head from "next/head";
 import Navbar from "../components/navbar";
 import SectionCards from "../components/section-cards";
-import { changeVideoFormat } from "../utils";
+import getVideos from "../lib/videos";
 import sections from "../db/data";
 import styles from "../styles/Home.module.css";
-import surfingData from "../db/surfingData";
 
-export default function Home() {
-  const surfingVideos = surfingData.map((video) => changeVideoFormat(video));
+export async function getServerSideProps() {
+  const surfingVideos = await getVideos();
 
+  return { props: { surfingVideos } };
+}
+
+export default function Home({ surfingVideos }) {
   useEffect(() => {
     console.log(surfingVideos);
   }, [surfingVideos]);
@@ -42,7 +45,7 @@ export default function Home() {
         <SectionCards
           title="Surfing"
           movies={surfingVideos}
-          posterSize="medium"
+          posterSize="small"
         />
       </div>
     </div>
