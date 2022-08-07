@@ -3,7 +3,10 @@ import Link from "next/link";
 import styles from "./style.module.css";
 import { useState } from "react";
 
-const Card = ({ size, imgUrl, name, link }) => {
+const Card = (props) => {
+  const fallbackUrl = "/movie_poster.png";
+  const { size = "medium", imgUrl = fallbackUrl, name, link } = props;
+  const [imgFallback, setImgFallback] = useState(imgUrl);
   const classMap = {
     large: styles.lgItem,
     medium: styles.mdItem,
@@ -15,9 +18,10 @@ const Card = ({ size, imgUrl, name, link }) => {
         <div className={classMap[size]}>
           <Image
             className={styles.cardImg}
-            src={imgUrl}
+            src={imgFallback}
             layout="fill"
             alt={`${name} cover image`}
+            onError={() => setImgFallback(fallbackUrl)}
           />
         </div>
       </Link>
