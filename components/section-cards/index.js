@@ -1,22 +1,23 @@
 import Card from "../card";
 import styles from "./style.module.css";
 
-const SectionCards = ({ title, movies, size }) => {
+const SectionCards = ({ title, movies, posterSize }) => {
   return (
-    <div className={styles.container}>
+    <section className={styles.container}>
       <h2 className={styles.title}>{title}</h2>
-      <div className={styles.wrapper}>
-        {movies.map(({ name, imgUrl, link }) => (
+      <div className={styles.cardWrapper}>
+        {movies.map(({ name, imgUrl, link }, index) => (
           <Card
             key={name}
             name={name}
             imgUrl={imgUrl}
             link={link}
-            size={size}
+            size={posterSize}
+            isFirstOrLast={index === 0 || index === movies.length - 1}
           />
         ))}
       </div>
-    </div>
+    </section>
   );
 };
 

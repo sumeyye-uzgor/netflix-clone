@@ -22,13 +22,16 @@ export default function Home() {
         subtitle="a very cute dog"
         imgUrl="https://images.pexels.com/photos/1549326/pexels-photo-1549326.jpeg?cs=srgb&dl=pexels-burak-karaduman-1549326.jpg&fm=jpg"
       />
-      {sections.map((section) => (
-        <SectionCards
-          key={section.id}
-          title={section.title}
-          movies={section.movies}
-        />
-      ))}
+      <div className={styles.sectionWrapper}>
+        {sections.map((section) => (
+          <SectionCards
+            key={section.id}
+            title={section.title}
+            movies={section.movies}
+            posterSize={section.posterSize}
+          />
+        ))}
+      </div>
     </div>
   );
 }

@@ -22,6 +22,60 @@ const sections = [
           "https://assets.imgix.net/hp/snowshoe.jpg?auto=compress&w=900&h=600&fit=crop",
         link: "/watch/disney3",
       },
+      {
+        name: "snowball2",
+        imgUrl:
+          "https://assets.imgix.net/hp/snowshoe.jpg?auto=compress&w=900&h=600&fit=crop",
+        link: "/watch/disney1",
+      },
+      {
+        name: "hello world2",
+        imgUrl:
+          "https://assets.imgix.net/hp/snowshoe.jpg?auto=compress&w=900&h=600&fit=crop",
+        link: "/watch/disney2",
+      },
+      {
+        name: "chrismast2",
+        imgUrl:
+          "https://assets.imgix.net/hp/snowshoe.jpg?auto=compress&w=900&h=600&fit=crop",
+        link: "/watch/disney3",
+      },
+      {
+        name: "snowball3",
+        imgUrl:
+          "https://assets.imgix.net/hp/snowshoe.jpg?auto=compress&w=900&h=600&fit=crop",
+        link: "/watch/disney1",
+      },
+      {
+        name: "hello world3",
+        imgUrl:
+          "https://assets.imgix.net/hp/snowshoe.jpg?auto=compress&w=900&h=600&fit=crop",
+        link: "/watch/disney2",
+      },
+      {
+        name: "chrismast3",
+        imgUrl:
+          "https://assets.imgix.net/hp/snowshoe.jpg?auto=compress&w=900&h=600&fit=crop",
+        link: "/watch/disney3",
+      },
+      {
+        name: "snowball4",
+        imgUrl:
+          "https://assets.imgix.net/hp/snowshoe.jpg?auto=compress&w=900&h=600&fit=crop",
+        link: "/watch/disney1",
+      },
+      {
+        name: "hello world4",
+        imgUrl:
+          "https://assets.imgix.net/hp/snowshoe.jpg?auto=compress&w=900&h=600&fit=crop",
+        link: "/watch/disney2",
+      },
+      {
+        name: "chrismast4",
+        imgUrl:
+          "https://assets.imgix.net/hp/snowshoe.jpg?auto=compress&w=900&h=600&fit=crop",
+        link: "/watch/disney3",
+      },
     ],
   },
   {
