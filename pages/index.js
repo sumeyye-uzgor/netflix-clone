@@ -1,11 +1,23 @@
+import { useEffect, useState } from "react";
 import Banner from "../components/banner";
 import Head from "next/head";
 import Navbar from "../components/navbar";
 import SectionCards from "../components/section-cards";
 import sections from "../db/data";
 import styles from "../styles/Home.module.css";
+import surfingData from "../db/surfingData";
 
 export default function Home() {
+  const surfingVideos = surfingData.map((video) => ({
+    id: video.id.videoId,
+    title: video.snippet.title,
+    imgUrl: video.snippet.thumbnails.high.url,
+    link: `/watch/${video.id.videoId}`,
+  }));
+
+  useEffect(() => {
+    console.log(surfingVideos);
+  }, [surfingVideos]);
   return (
     <div className={styles.container}>
       <Head>
@@ -31,6 +43,11 @@ export default function Home() {
             posterSize={section.posterSize}
           />
         ))}
+        <SectionCards
+          title="Surfing"
+          movies={surfingVideos}
+          posterSize="medium"
+        />
       </div>
     </div>
   );
