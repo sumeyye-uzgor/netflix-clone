@@ -1,5 +1,5 @@
+import Banner from "../components/banner";
 import Head from "next/head";
-import Image from "next/image";
 import styles from "../styles/Home.module.css";
 
 export default function Home() {
@@ -15,6 +15,13 @@ export default function Home() {
       </Head>
 
       <h1>Welcome to Netflix Clone</h1>
+      {/* <Navbar />
+      <Card /> */}
+      <Banner
+        title="Clifford the red dog"
+        subtitle="a very cute dog"
+        imgUrl="https://images.pexels.com/photos/1549326/pexels-photo-1549326.jpeg?cs=srgb&dl=pexels-burak-karaduman-1549326.jpg&fm=jpg"
+      />
     </div>
   );
 }
