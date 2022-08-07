@@ -1,5 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
+import cls from "classnames";
+import { motion } from "framer-motion";
 import styles from "./style.module.css";
 import { useState } from "react";
 
@@ -15,7 +17,10 @@ const Card = (props) => {
   return (
     <div className={styles.container}>
       <Link href={link}>
-        <div className={classMap[size]}>
+        <motion.div
+          className={cls(classMap[size], styles.imgMotionWrapper)}
+          whileHover={{ scale: 1.2 }}
+        >
           <Image
             className={styles.cardImg}
             src={imgFallback}
@@ -23,7 +28,7 @@ const Card = (props) => {
             alt={`${name} cover image`}
             onError={() => setImgFallback(fallbackUrl)}
           />
-        </div>
+        </motion.div>
       </Link>
     </div>
   );
