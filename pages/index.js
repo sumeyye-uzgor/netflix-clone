@@ -3,17 +3,13 @@ import Banner from "../components/banner";
 import Head from "next/head";
 import Navbar from "../components/navbar";
 import SectionCards from "../components/section-cards";
+import { changeVideoFormat } from "../utils";
 import sections from "../db/data";
 import styles from "../styles/Home.module.css";
 import surfingData from "../db/surfingData";
 
 export default function Home() {
-  const surfingVideos = surfingData.map((video) => ({
-    id: video.id.videoId,
-    title: video.snippet.title,
-    imgUrl: video.snippet.thumbnails.high.url,
-    link: `/watch/${video.id.videoId}`,
-  }));
+  const surfingVideos = surfingData.map((video) => changeVideoFormat(video));
 
   useEffect(() => {
     console.log(surfingVideos);
