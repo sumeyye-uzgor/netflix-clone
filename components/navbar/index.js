@@ -9,7 +9,14 @@ const Navbar = ({ username }) => {
     <div className={styles.container}>
       <div className={styles.wrapper}>
         <Link className={styles.logoLink} href="/">
-          <div className={styles.logoWrapper}>Netflix</div>
+          <div className={styles.logoWrapper}>
+            <Image
+              src="/netflix.svg"
+              width="128px"
+              height="34px"
+              alt="netflix logo"
+            />
+          </div>
         </Link>
         <ul className={styles.navItems}>
           <li className={styles.navItem}>
@@ -26,7 +33,12 @@ const Navbar = ({ username }) => {
               onClick={() => setShowDropdown((showDropdown) => !showDropdown)}
             >
               <p className={styles.username}>{username}</p>
-              {/* Expand more iconn */}
+              <Image
+                src="/expand_more.svg"
+                width="24px"
+                height="24px"
+                alt="expand more icon"
+              />
             </button>
             {showDropdown && (
               <div className={styles.navDropdown}>
