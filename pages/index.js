@@ -1,5 +1,6 @@
 import Banner from "../components/banner";
 import Head from "next/head";
+import Navbar from "../components/navbar";
 import styles from "../styles/Home.module.css";
 
 export default function Home() {
@@ -13,10 +14,7 @@ export default function Home() {
         />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-
-      <h1>Welcome to Netflix Clone</h1>
-      {/* <Navbar />
-      <Card /> */}
+      <Navbar username="sumeyyeuzgor@gmail.com" />
       <Banner
         title="Clifford the red dog"
         subtitle="a very cute dog"
