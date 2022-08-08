@@ -23,7 +23,7 @@ const Card = (props) => {
   const scale = isFirstOrLast ? { scaleY: 1.1 } : { scale: 1.1 };
   return (
     <div className={styles.container}>
-      <Link href={link}>
+      <Link href={link || "/"}>
         <motion.div
           className={cls(classMap[size], styles.imgMotionWrapper)}
           whileHover={scale}
