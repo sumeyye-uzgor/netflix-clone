@@ -1,13 +1,32 @@
+import { useEffect, useState } from "react";
 import Head from "next/head";
 import Image from "next/image";
 import Link from "next/link";
 import styles from "../styles/Login.module.css";
+import { useRouter } from "next/router";
 
 const Login = () => {
+  const [email, setEmail] = useState("");
+  const [userMsg, setUserMsg] = useState("");
+  const router = useRouter();
+  const isEmail = (input) =>
+    input.match(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/);
+
   const handleLoginWithEmail = async (e) => {
     e.preventDefault();
-    console.log("hi button");
+    if (isEmail(email)) {
+      if (email === "summeyyeoz@gmail.com") {
+        router.push("/");
+      } else {
+        setUserMsg("Something went wrong logging in.");
+      }
+    } else {
+      setUserMsg("Enter a valid email address");
+    }
   };
+  useEffect(() => {
+    isEmail(email) && setUserMsg("");
+  }, [email]);
   return (
     <div className={styles.container}>
       <Head>
@@ -36,8 +55,10 @@ const Login = () => {
             type="text"
             placeholder="Email address"
             className={styles.emailInput}
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
           />
-          <p className={styles.userMsg}></p>
+          {userMsg?.length > 0 && <p className={styles.userMsg}>{userMsg}</p>}
           <button onClick={handleLoginWithEmail} className={styles.loginBtn}>
             Sign In
           </button>
