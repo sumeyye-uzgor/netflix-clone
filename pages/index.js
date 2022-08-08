@@ -5,6 +5,7 @@ import Head from "next/head";
 import Navbar from "../components/navbar";
 import SectionCards from "../components/section-cards";
 import disneyData from "../db/disneyData";
+import { getCredentialsWithMagic } from "../lib/magic-client";
 import popularData from "../db/popularData";
 import productivityData from "../db/productivityData";
 // import sections from "../db/data";
@@ -57,9 +58,20 @@ export async function getServerSideProps() {
 }
 
 export default function Home({ sections }) {
+  const [userInfo, setUserInfo] = useState(null);
   useEffect(() => {
     console.log(sections);
   }, [sections]);
+  useEffect(() => {
+    console.log({ userInfo });
+  }, [userInfo]);
+  useEffect(() => {
+    const getUserInfo = async () => {
+      const user = await getCredentialsWithMagic();
+      setUserInfo(user);
+    };
+    getUserInfo();
+  }, []);
   return (
     <div className={styles.container}>
       <Head>
@@ -71,7 +83,7 @@ export default function Home({ sections }) {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main className={styles.main}>
-        <Navbar username="sumeyyeuzgor@gmail.com" />
+        <Navbar username={userInfo?.email} />
         <Banner
           title="Clifford the red dog"
           subtitle="a very cute dog"

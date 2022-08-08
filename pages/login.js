@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import Head from "next/head";
 import Image from "next/image";
 import Link from "next/link";
-import magicClient from "../lib/magic-client";
+import { signInWithMagic } from "../lib/magic-client";
 import styles from "../styles/Login.module.css";
 import { useRouter } from "next/router";
 
@@ -20,7 +20,7 @@ const Login = () => {
       setIsLoading(true);
 
       // if (email === "summeyyeoz@gmail.com") {
-      const token = await magicClient(email);
+      const token = await signInWithMagic(email);
       if (token) {
         router.push("/");
       }

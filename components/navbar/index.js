@@ -1,10 +1,21 @@
 import Image from "next/image";
 import Link from "next/link";
+import { logOutWithMagic } from "../../lib/magic-client";
 import styles from "./style.module.css";
+import { useRouter } from "next/router";
 import { useState } from "react";
 
 const Navbar = ({ username }) => {
+  const router = useRouter();
   const [showDropdown, setShowDropdown] = useState(false);
+  const handleLogOut = async () => {
+    const out = await logOutWithMagic();
+    if (out) {
+      router.push("/login");
+    } else {
+      setShowDropdown(false);
+    }
+  };
   return (
     <div className={styles.container}>
       <div className={styles.wrapper}>
@@ -42,10 +53,10 @@ const Navbar = ({ username }) => {
             </button>
             {showDropdown && (
               <div className={styles.navDropdown}>
-                <div>
-                  <Link href="/login">
-                    <a className={styles.linkName}>Sign Out of Netflix</a>
-                  </Link>
+                <div onClick={handleLogOut}>
+                  {/* <Link href="/login"> */}
+                  <a className={styles.linkName}>Sign Out of Netflix</a>
+                  {/* </Link> */}
                   <div className={styles.lineWrapper}></div>
                 </div>
               </div>
