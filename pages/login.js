@@ -2,12 +2,14 @@ import { useEffect, useState } from "react";
 import Head from "next/head";
 import Image from "next/image";
 import Link from "next/link";
+import magicClient from "../lib/magic-client";
 import styles from "../styles/Login.module.css";
 import { useRouter } from "next/router";
 
 const Login = () => {
   const [email, setEmail] = useState("");
   const [userMsg, setUserMsg] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
   const router = useRouter();
   const isEmail = (input) =>
     input.match(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/);
@@ -15,18 +17,38 @@ const Login = () => {
   const handleLoginWithEmail = async (e) => {
     e.preventDefault();
     if (isEmail(email)) {
-      if (email === "summeyyeoz@gmail.com") {
+      setIsLoading(true);
+
+      // if (email === "summeyyeoz@gmail.com") {
+      const token = await magicClient(email);
+      if (token) {
         router.push("/");
-      } else {
-        setUserMsg("Something went wrong logging in.");
       }
+      // } else {
+      //   setIsLoading(false);
+      //   setUserMsg("Something went wrong logging in.");
+      // }
     } else {
+      setIsLoading(false);
       setUserMsg("Enter a valid email address");
     }
   };
   useEffect(() => {
     isEmail(email) && setUserMsg("");
   }, [email]);
+
+  useEffect(() => {
+    const handleComplete = () => {
+      setIsLoading(false);
+    };
+    router.events.on("routeChangeComplete", handleComplete);
+    router.events.on("routeChangeError", handleComplete);
+
+    return () => {
+      router.events.off("routeChangeComplete", handleComplete);
+      router.events.off("routeChangeError", handleComplete);
+    };
+  }, []);
   return (
     <div className={styles.container}>
       <Head>
@@ -60,7 +82,7 @@ const Login = () => {
           />
           {userMsg?.length > 0 && <p className={styles.userMsg}>{userMsg}</p>}
           <button onClick={handleLoginWithEmail} className={styles.loginBtn}>
-            Sign In
+            {isLoading ? "Loading..." : "Sign In"}
           </button>
         </div>
       </main>
