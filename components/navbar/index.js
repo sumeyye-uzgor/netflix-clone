@@ -1,12 +1,16 @@
+import {
+  getCredentialsWithMagic,
+  logOutWithMagic,
+} from "../../lib/magic-client";
+import { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { logOutWithMagic } from "../../lib/magic-client";
 import styles from "./style.module.css";
 import { useRouter } from "next/router";
-import { useState } from "react";
 
-const Navbar = ({ username }) => {
+const Navbar = () => {
   const router = useRouter();
+  const [userInfo, setUserInfo] = useState(null);
   const [showDropdown, setShowDropdown] = useState(false);
   const handleLogOut = async () => {
     const out = await logOutWithMagic();
@@ -16,6 +20,13 @@ const Navbar = ({ username }) => {
       setShowDropdown(false);
     }
   };
+  useEffect(() => {
+    const getUserInfo = async () => {
+      const user = await getCredentialsWithMagic();
+      setUserInfo(user);
+    };
+    getUserInfo();
+  }, []);
   return (
     <div className={styles.container}>
       <div className={styles.wrapper}>
@@ -37,20 +48,25 @@ const Navbar = ({ username }) => {
             <Link href="/my-list">My List</Link>
           </li>
         </ul>
+
         <nav className={styles.navContainer}>
           <div>
-            <button
-              className={styles.usernameBtn}
-              onClick={() => setShowDropdown((showDropdown) => !showDropdown)}
-            >
-              <p className={styles.username}>{username}</p>
-              <Image
-                src="/expand_more.svg"
-                width="24px"
-                height="24px"
-                alt="expand more icon"
-              />
-            </button>
+            {userInfo?.email ? (
+              <button
+                className={styles.usernameBtn}
+                onClick={() => setShowDropdown((showDropdown) => !showDropdown)}
+              >
+                <p className={styles.username}>{userInfo?.email}</p>
+                <Image
+                  src="/expand_more.svg"
+                  width="24px"
+                  height="24px"
+                  alt="expand more icon"
+                />
+              </button>
+            ) : (
+              "Loading..."
+            )}
             {showDropdown && (
               <div className={styles.navDropdown}>
                 <div onClick={handleLogOut}>
