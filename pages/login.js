@@ -48,7 +48,7 @@ const Login = () => {
       router.events.off("routeChangeComplete", handleComplete);
       router.events.off("routeChangeError", handleComplete);
     };
-  }, []);
+  }, [router]);
   return (
     <div className={styles.container}>
       <Head>
