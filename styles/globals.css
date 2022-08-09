@@ -81,6 +81,7 @@ button {
   --white10: rgba(255, 255, 255, 1);
   --white20: rgba(243, 244, 246, 1);
   --white30: rgb(209, 213, 219);
+  --white60: rgba(255, 255, 255, 0.1);
 
   --green10: rgba(110, 231, 183, 1);
   --shadow10: rgba(0, 0, 0, 0.3);

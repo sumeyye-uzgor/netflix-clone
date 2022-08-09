@@ -1,0 +1,70 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  min-height: 100vh;
+  background-color: var(--black);
+
+  background-image: linear-gradient(rgb(0 0 0 / 60%), rgb(0 0 0 / 60%)),
+    url(/signin-bg.jpeg);
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+
+  padding-top: 2rem /* 32px */;
+  padding-bottom: 2rem /* 32px */;
+}
+
+.headerWrapper {
+  padding-left: 1rem /* 16px */;
+  padding-right: 1rem /* 16px */;
+  flex-direction: row;
+  display: flex;
+}
+
+.logoLink {
+  display: flex;
+  font-weight: 500;
+  align-items: center;
+  color: var(--white10);
+  margin-bottom: 1rem /* 16px */;
+}
+
+.logoWrapper {
+  color: var(--red);
+  width: 8rem /* 128px */;
+}
+
+.main {
+  width: 100%;
+  height: 100vh;
+  position: relative;
+
+  display: flex;
+  width: 100%;
+  height: 100%;
+
+  z-index: 10;
+  justify-content: center;
+}
+
+@media (min-width: 768px) {
+  .headerWrapper {
+    padding-left: 4rem /* 64px */;
+    padding-right: 4rem /* 64px */;
+    flex-direction: row;
+    align-items: center;
+  }
+
+  .logoLink {
+    margin-bottom: 0px;
+  }
+
+  .mainWrapper {
+    margin-top: 2rem /* 128px */;
+  }
+}
