@@ -1,9 +1,8 @@
 import Image from "next/image";
 import styles from "./style.module.css";
-const Banner = ({ title, subtitle, imgUrl }) => {
-  const handleOnPlay = () => {
-    console.log("handleOnPlay");
-  };
+import { useRouter } from "next/router";
+const Banner = ({ videoId, title, subtitle, imgUrl }) => {
+  const router = useRouter();
   return (
     <div className={styles.container}>
       <div className={styles.leftWrapper}>
@@ -15,7 +14,10 @@ const Banner = ({ title, subtitle, imgUrl }) => {
           <h3 className={styles.title}>{title}</h3>
           <h3 className={styles.subtitle}>{subtitle}</h3>
           <div className={styles.playBtnWrapper}>
-            <button className={styles.btnWithIcon} onClick={handleOnPlay}>
+            <button
+              className={styles.btnWithIcon}
+              onClick={() => router.push(`/video/${videoId}`)}
+            >
               <Image
                 src="/play_arrow.svg"
                 width="32px"

@@ -19,6 +19,7 @@ export async function getServerSideProps() {
         title: item.snippet.title,
         imgUrl: item.snippet.thumbnails.high.url,
         id,
+        link: `/video/${id}`,
       };
     });
   const disneyVideos = await dataToVideoConvert(disneyData);
@@ -74,6 +75,7 @@ export default function Home({ sections }) {
       <main className={styles.main}>
         <Navbar />
         <Banner
+          videoId="aEm72qlAtVc"
           title="Clifford the red dog"
           subtitle="a very cute dog"
           imgUrl="https://images.pexels.com/photos/1549326/pexels-photo-1549326.jpeg?cs=srgb&dl=pexels-burak-karaduman-1549326.jpg&fm=jpg"
