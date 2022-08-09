@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import Head from "next/head";
 import Image from "next/image";
 import Link from "next/link";
@@ -18,9 +19,13 @@ const customStyles = {
     background: "rgba(255, 255, 255, 0.2)",
   },
 };
-Modal.setAppElement("#wrapper");
+Modal.setAppElement("#__next");
 const Video = () => {
   const router = useRouter();
+  const [videoId, setVideoId] = useState(router.query.videoId || "");
+  useEffect(() => {
+    setVideoId(router.query.videoId);
+  }, [router]);
   return (
     <div className={styles.container}>
       <Head>
@@ -42,7 +47,7 @@ const Video = () => {
           </Link>
         </div>
       </header>
-      <main className={styles.main} id="wrapper">
+      <main className={styles.main}>
         {/* <div>Video {router.query.videoId}</div>; */}
         <Modal
           isOpen={true}
@@ -50,6 +55,16 @@ const Video = () => {
           contentLabel="Watch the video"
         >
           {/* <h2 ref={(_subtitle) => (subtitle = _subtitle)}>Hello</h2> */}
+          <iframe
+            id="player"
+            className={styles.videoPlayer}
+            type="text/html"
+            width="100%"
+            height="390"
+            src={`http://www.youtube.com/embed/${videoId}`}
+            // src={`http://www.youtube.com/embed/${videoId}?autoplay=1&origin=http://localhost:3000&enablejsapi=1&controls=0&rel=0`}
+            frameBorder="0"
+          ></iframe>
           <div>Video {router.query.videoId}</div>;
         </Modal>
       </main>
